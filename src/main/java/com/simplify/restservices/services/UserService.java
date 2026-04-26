@@ -1,6 +1,8 @@
 package com.simplify.restservices.services;
 
 import com.simplify.restservices.entities.User;
+import com.simplify.restservices.exceptions.UserExistsException;
+import com.simplify.restservices.exceptions.UserNotFoundException;
 import com.simplify.restservices.repositories.UserRepository;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +23,10 @@ public class UserService {
     }
 
     public User createUser(User user) {
+        Optional<User> dbUser = this.userRepository.findByUsername(user.getUsername());
+        if(dbUser.isPresent()) {
+            throw new UserExistsException("El usuario: '" + user.getUsername() + "' ya existe en el repositorio.");
+        }
         return this.userRepository.save(user);
     }
 
@@ -30,11 +36,12 @@ public class UserService {
             return optionalUser.get();
         }
 
-        return null;
+        throw new UserNotFoundException("Usuario con id: " + id + " no encontrado");
     }
 
     public User updateUserById(Long id, User user) {
         Optional<User> optionalUser = this.userRepository.findById(id);
+
         if (optionalUser.isPresent()) {
             User dbUser = optionalUser.get();
             dbUser.setUsername(user.getUsername());
@@ -47,13 +54,16 @@ public class UserService {
             return this.userRepository.save(dbUser);
         }
 
-        return null;
+        throw new UserNotFoundException("Usuario con id: " + id + " no encontrado");
     }
 
     public void deleteUserById(Long id) {
-        if(this.userRepository.findById(id).isPresent()) {
+        Optional<User> optionalUser = this.userRepository.findById(id);
+        if(optionalUser.isPresent()) {
             this.userRepository.deleteById(id);
         }
+
+        throw new UserNotFoundException("Usuario con id: " + id + " no encontrado");
     }
 
     public User findUserByUsername(String username) {
@@ -61,6 +71,6 @@ public class UserService {
         if(dbUser.isPresent()) {
             return dbUser.get();
         }
-        return null;
+        throw new UserNotFoundException("Usuario con usename: " + username + " no encontrado");
     }
 }

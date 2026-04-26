@@ -2,8 +2,12 @@ package com.simplify.restservices.controllers;
 
 import com.simplify.restservices.entities.User;
 import com.simplify.restservices.services.UserService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -21,13 +25,18 @@ public class UserController {
     }
 
     @GetMapping("/users/{id}")
-    public User getUserById(@PathVariable Long id) {
-        return this.userService.getUserById(id);
+    public ResponseEntity<User> getUserById(@PathVariable Long id) {
+        return new ResponseEntity<>(this.userService.getUserById(id), HttpStatus.OK);
     }
 
     @PostMapping("/users")
-    public User crateUser(@RequestBody User user) {
-        return this.userService.createUser(user);
+    public ResponseEntity<User> crateUser(@RequestBody User user) {
+        User newUser = this.userService.createUser(user);
+        URI location = ServletUriComponentsBuilder.fromCurrentRequest()
+                .path("/{id}")
+                .buildAndExpand(newUser.getId())
+                .toUri();
+        return ResponseEntity.created(location).body(newUser);
     }
 
     @PutMapping("/users/{id}")
