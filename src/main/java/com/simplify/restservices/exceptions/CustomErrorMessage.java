@@ -1,15 +1,22 @@
 package com.simplify.restservices.exceptions;
 
-import java.time.LocalDateTime;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
+import java.time.LocalDateTime;
+import java.util.List;
+
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class CustomErrorMessage {
 
     private String message;
+    private List<String> messages;
     private int statusCode;
     private LocalDateTime timestamp;
 
-    public CustomErrorMessage(String message, int statusCode, LocalDateTime timestamp) {
+    public CustomErrorMessage(String message, List<String> messages, int statusCode, LocalDateTime timestamp) {
         this.message = message;
+        this.messages = messages;
         this.statusCode = statusCode;
         this.timestamp = timestamp;
     }
@@ -36,5 +43,13 @@ public class CustomErrorMessage {
 
     public void setTimestamp(LocalDateTime timestamp) {
         this.timestamp = timestamp;
+    }
+
+    public List<String> getMessages() {
+        return messages;
+    }
+
+    public void setMessages(List<String> messages) {
+        this.messages = messages;
     }
 }

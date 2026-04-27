@@ -1,5 +1,6 @@
 package com.simplify.restservices.entities;
 
+import com.simplify.restservices.dtos.UserRequest;
 import jakarta.persistence.*;
 
 @Entity
@@ -23,6 +24,15 @@ public class User {
     private String ssn;
 
     public User(){}
+
+    public User(UserRequest userRequest) {
+        this.username = userRequest.getUsername();
+        this.firstname = userRequest.getFirstname();
+        this.lastname = userRequest.getLastname();
+        this.email = userRequest.getEmail();
+        this.role = userRequest.getRole();
+        this.ssn = userRequest.getSsn();
+    }
 
     public User(String username, String firstname, String lastname, String email, String role, String ssn) {
         this.username = username;
