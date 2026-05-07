@@ -15,6 +15,7 @@ import java.net.URI;
 import java.util.List;
 
 @RestController
+@RequestMapping("/users")
 @Validated
 public class UserController {
 
@@ -24,17 +25,17 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping("/users")
+    @GetMapping
     public List<User> getAllUsers() {
         return this.userService.getAllUsers();
     }
 
-    @GetMapping("/users/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<User> getUserById(@PathVariable @Min(1) Long id) {
         return new ResponseEntity<>(this.userService.getUserById(id), HttpStatus.OK);
     }
 
-    @PostMapping("/users")
+    @PostMapping
     public ResponseEntity<User> crateUser(@Valid @RequestBody UserRequest userRequest) {
         User user = new User(userRequest);
         User newUser = this.userService.createUser(user);
@@ -45,17 +46,17 @@ public class UserController {
         return ResponseEntity.created(location).body(newUser);
     }
 
-    @PutMapping("/users/{id}")
+    @PutMapping("/{id}")
     public User updateUser(@PathVariable Long id, @RequestBody User user) {
         return this.userService.updateUserById(id, user);
     }
 
-    @DeleteMapping("/users/{id}")
+    @DeleteMapping("/{id}")
     public void deleteUserById(@PathVariable Long id) {
         this.userService.deleteUserById(id);
     }
 
-    @GetMapping("/users/byusername/{username}")
+    @GetMapping("/byusername/{username}")
     public User findByUsername(@PathVariable String username) {
         return this.userService.findUserByUsername(username);
     }

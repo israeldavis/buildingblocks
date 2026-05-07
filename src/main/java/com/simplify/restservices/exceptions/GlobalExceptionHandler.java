@@ -67,6 +67,18 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         return new ResponseEntity<>(errorMessage, HttpStatus.BAD_REQUEST);
     }
 
+    @ExceptionHandler(OrderException.class)
+    public ResponseEntity<CustomErrorMessage> handleOrderException(OrderException ex) {
+        CustomErrorMessage errorMessage = new CustomErrorMessage(ex.getMessage(), null, HttpStatus.BAD_REQUEST.value(), LocalDateTime.now());
+        return new ResponseEntity<>(errorMessage, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(OrderNotFoundException.class)
+    public ResponseEntity<CustomErrorMessage> handleOrderException(OrderNotFoundException ex) {
+        CustomErrorMessage errorMessage = new CustomErrorMessage(ex.getMessage(), null, HttpStatus.BAD_REQUEST.value(), LocalDateTime.now());
+        return new ResponseEntity<>(errorMessage, HttpStatus.BAD_REQUEST);
+    }
+
     @ExceptionHandler(Exception.class)
     public ResponseEntity<CustomErrorMessage> notFound(Exception ex) {
         CustomErrorMessage error = new CustomErrorMessage("Error interno del servidor", null,  HttpStatus.INTERNAL_SERVER_ERROR.value(),  LocalDateTime.now());

@@ -43,3 +43,11 @@ VALUES ('mnavarro', 'Manuel', 'Navarro', 'manuel.navarro@example.com', 'MANAGER'
 
 INSERT INTO users (user_name, first_name, last_name, email, role, ssn)
 VALUES ('oramos', 'Olga', 'Ramos', 'olga.ramos@example.com', 'USER', '55667');
+
+
+INSERT INTO Orders(user_id, description) values(1, 'order11');
+INSERT INTO Orders(user_id, description) values(1, 'order12');
+INSERT INTO Orders(user_id, description) values(1, 'order13');
+INSERT INTO Orders(user_id, description) values(2, 'order21');
+INSERT INTO Orders(user_id, description) values(2, 'order22');
+INSERT INTO Orders(user_id, description) values(3, 'order31');

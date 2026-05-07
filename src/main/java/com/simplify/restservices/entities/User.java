@@ -3,6 +3,8 @@ package com.simplify.restservices.entities;
 import com.simplify.restservices.dtos.UserRequest;
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "users")
 public class User {
@@ -22,6 +24,9 @@ public class User {
     private String role;
     @Column(name = "ssn", length = 5, nullable = false, unique = true)
     private String ssn;
+
+    @OneToMany(mappedBy = "user")
+    private List<Order> orders;
 
     public User(){}
 
@@ -97,6 +102,14 @@ public class User {
 
     public void setSsn(String ssn) {
         this.ssn = ssn;
+    }
+
+    public List<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
     }
 
     @Override
