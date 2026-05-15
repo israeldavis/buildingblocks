@@ -51,3 +51,20 @@ INSERT INTO Orders(user_id, description) values(1, 'order13');
 INSERT INTO Orders(user_id, description) values(2, 'order21');
 INSERT INTO Orders(user_id, description) values(2, 'order22');
 INSERT INTO Orders(user_id, description) values(3, 'order31');
+
+
+INSERT INTO employees (name, department, login_time, logout_time, salary, last_promotion_date) VALUES ('Ana García', 'IT', '08:30:00', '17:30:00', 55000.00, '2023-06-15');
+INSERT INTO employees (name, department, login_time, logout_time, salary, last_promotion_date) VALUES ('Carlos López', 'IT', '09:00:00', '18:00:00', 62000.00, '2024-01-20');
+INSERT INTO employees (name, department, login_time, logout_time, salary, last_promotion_date) VALUES ('Marta Rodríguez', 'HR', '08:45:00', '17:15:00', 48000.00, '2022-11-10');
+INSERT INTO employees (name, department, login_time, logout_time, salary, last_promotion_date) VALUES ('Javier Martínez', 'Sales', '09:30:00', '18:30:00', 71000.00, '2023-09-05');
+INSERT INTO employees (name, department, login_time, logout_time, salary, last_promotion_date) VALUES ('Laura Fernández', 'Marketing', '08:00:00', '16:30:00', 53000.00, '2023-12-01');
+INSERT INTO employees (name, department, login_time, logout_time, salary, last_promotion_date) VALUES ('David Sánchez', 'Finance', '09:15:00', '17:45:00', 67000.00, '2024-03-18');
+INSERT INTO employees (name, department, login_time, logout_time, salary, last_promotion_date) VALUES ('Elena Gómez', 'IT', '10:00:00', '19:00:00', 59000.00, '2022-08-22');
+INSERT INTO employees (name, department, login_time, logout_time, salary, last_promotion_date) VALUES ('Pablo Ruiz', 'Sales', '08:30:00', '17:00:00', 68500.00, '2023-10-12');
+INSERT INTO employees (name, department, login_time, logout_time, salary, last_promotion_date) VALUES ('Sofía Moreno', 'HR', '09:00:00', '17:30:00', 51000.00, '2023-05-30');
+INSERT INTO employees (name, department, login_time, logout_time, salary, last_promotion_date) VALUES ('Daniel Jiménez', 'Finance', '08:15:00', '16:45:00', 72000.00, '2024-02-14');
+INSERT INTO employees (name, department, login_time, logout_time, salary, last_promotion_date) VALUES ('Carmen Álvarez', 'Marketing', '09:45:00', '18:15:00', 49500.00, '2022-12-03');
+INSERT INTO employees (name, department, login_time, logout_time, salary, last_promotion_date) VALUES ('Alejandro Romero', 'IT', '07:30:00', '15:30:00', 64000.00, '2023-07-19');
+INSERT INTO employees (name, department, login_time, logout_time, salary, last_promotion_date) VALUES ('Isabel Torres', 'Sales', '08:00:00', '16:00:00', 74000.00, '2024-04-25');
+INSERT INTO employees (name, department, login_time, logout_time, salary, last_promotion_date) VALUES ('Francisco Vázquez', 'HR', '10:15:00', '19:15:00', 46000.00, '2023-01-17');
+INSERT INTO employees (name, department, login_time, logout_time, salary, last_promotion_date) VALUES ('Lucía Navarro', 'Finance', '09:30:00', '18:00:00', 70000.00, '2023-11-08');

@@ -3,6 +3,7 @@ package com.simplify.restservices.entities;
 import com.fasterxml.jackson.annotation.JsonFilter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonView;
 import com.simplify.restservices.dtos.UserRequest;
 import jakarta.persistence.*;
 
@@ -11,27 +12,34 @@ import java.util.List;
 @Entity
 @Table(name = "users")
 //@JsonIgnoreProperties({"firstname", "lastname"})
-@JsonFilter(value = "userFilter")
+//@JsonFilter(value = "userFilter") -- Used for MappingJacksonValue filtering section
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "user_name", length = 50, nullable = false, unique = true)
+    @JsonView(Views.External.class)
     private String username;
     @Column(name = "first_name", length = 50, nullable = false)
+    @JsonView(Views.External.class)
     private String firstname;
     @Column(name = "last_name", length = 50, nullable = false)
+    @JsonView(Views.External.class)
     private String lastname;
     @Column(name = "email", length = 50, nullable = false)
+    @JsonView(Views.External.class)
     private String email;
     @Column(name = "role", length = 50, nullable = false)
+    @JsonView(Views.Internal.class)
     private String role;
     @Column(name = "ssn", length = 5, nullable = false, unique = true)
+    @JsonView(Views.Internal.class)
     //@JsonIgnore
     private String ssn;
 
     @OneToMany(mappedBy = "user")
+    @JsonView(Views.Internal.class)
     private List<Order> orders;
 
     public User(){}

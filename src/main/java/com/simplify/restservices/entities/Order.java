@@ -1,6 +1,7 @@
 package com.simplify.restservices.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonView;
 import jakarta.persistence.*;
 
 @Entity
@@ -9,7 +10,9 @@ public class Order {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JsonView(Views.Internal.class)
     private Long id;
+    @JsonView(Views.Internal.class)
     private String description;
 
     @ManyToOne(fetch = FetchType.LAZY)
