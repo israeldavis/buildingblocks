@@ -1,5 +1,6 @@
 package com.simplify.restservices.entities;
 
+import com.fasterxml.jackson.annotation.JsonFilter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.simplify.restservices.dtos.UserRequest;
@@ -9,7 +10,8 @@ import java.util.List;
 
 @Entity
 @Table(name = "users")
-@JsonIgnoreProperties({"firstname", "lastname"})
+//@JsonIgnoreProperties({"firstname", "lastname"})
+@JsonFilter(value = "userFilter")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,7 +28,7 @@ public class User {
     @Column(name = "role", length = 50, nullable = false)
     private String role;
     @Column(name = "ssn", length = 5, nullable = false, unique = true)
-    @JsonIgnore
+    //@JsonIgnore
     private String ssn;
 
     @OneToMany(mappedBy = "user")
