@@ -42,6 +42,9 @@ public class User {
     @JsonView(Views.Internal.class)
     private List<Order> orders;
 
+    @Column(name = "address")
+    private String address;
+
     public User(){}
 
     public User(UserRequest userRequest) {
@@ -51,15 +54,17 @@ public class User {
         this.email = userRequest.getEmail();
         this.role = userRequest.getRole();
         this.ssn = userRequest.getSsn();
+        this.address = userRequest.getAddress();
     }
 
-    public User(String username, String firstname, String lastname, String email, String role, String ssn) {
+    public User(String username, String firstname, String lastname, String email, String role, String ssn, String address) {
         this.username = username;
         this.firstname = firstname;
         this.lastname = lastname;
         this.email = email;
         this.role = role;
         this.ssn = ssn;
+        this.address = address;
     }
 
     public Long getId() {
@@ -126,6 +131,14 @@ public class User {
         this.orders = orders;
     }
 
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -136,6 +149,8 @@ public class User {
                 ", email='" + email + '\'' +
                 ", role='" + role + '\'' +
                 ", ssn='" + ssn + '\'' +
+                ", orders=" + orders +
+                ", address='" + address + '\'' +
                 '}';
     }
 }

@@ -1,28 +1,30 @@
 package com.simplify.restservices.dtos;
 
+import com.simplify.restservices.entities.Order;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 
-public class UserRequest {
+import java.util.List;
 
-    @NotEmpty(message = "Username is Mandatory field. Please provide username")
+public class UserDtoV1 {
     private String username;
-    @Size(min = 2, message = "First name should have at least 2 characteres")
     private String firstname;
     private String lastname;
     private String email;
     private String role;
     private String ssn;
-    private String address;
+    private List<Order> orders;
 
-    public UserRequest(String username, String firstname, String lastname, String email, String role, String ssn, String address) {
+    public UserDtoV1() {}
+
+    public UserDtoV1(String username, String firstname, String lastname, String email, String role, String ssn, List<Order> orders) {
         this.username = username;
         this.firstname = firstname;
         this.lastname = lastname;
         this.email = email;
         this.role = role;
         this.ssn = ssn;
-        this.address = address;
+        this.orders = orders;
     }
 
     public String getUsername() {
@@ -73,24 +75,11 @@ public class UserRequest {
         this.ssn = ssn;
     }
 
-    public String getAddress() {
-        return address;
+    public List<Order> getOrders() {
+        return orders;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    @Override
-    public String toString() {
-        return "UserRequest{" +
-                "username='" + username + '\'' +
-                ", firstname='" + firstname + '\'' +
-                ", lastname='" + lastname + '\'' +
-                ", email='" + email + '\'' +
-                ", role='" + role + '\'' +
-                ", ssn='" + ssn + '\'' +
-                ", address='" + address + '\'' +
-                '}';
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
     }
 }
